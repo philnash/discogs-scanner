@@ -17,3 +17,7 @@
   from = "/discogs/user"
   to = "/.netlify/functions/user"
   status = 200
+[[redirects]]
+  from = "/discogs/search"
+  to = "/.netlify/functions/search"
+  status = 200

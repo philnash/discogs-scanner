@@ -19,7 +19,8 @@
     "svelte": "^3.32.1"
   },
   "dependencies": {
-    "disconnect": "^1.2.1"
+    "disconnect": "^1.2.1",
+    "zbar.wasm": "^2.0.3"
   },
   "browserslist": [
     "since 2017-06"
