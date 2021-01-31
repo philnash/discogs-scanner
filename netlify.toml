@@ -1,0 +1,19 @@
+[dev]
+  command = "npm start"
+  targetPort = 1234
+  framework = "#custom"
+  publish = "dist"
+[build]
+  functions = "functions"
+[[redirects]]
+  from = "/discogs/callback"
+  to = "/.netlify/functions/callback"
+  status = 200
+[[redirects]]
+  from = "/discogs/auth"
+  to = "/.netlify/functions/auth"
+  status = 200
+[[redirects]]
+  from = "/discogs/user"
+  to = "/.netlify/functions/user"
+  status = 200

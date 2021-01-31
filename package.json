@@ -6,17 +6,20 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "parcel src/index.html",
-    "build": "parcel build src/index.html"
+    "build": "parcel build src/index.html",
+    "netlify": "netlify dev"
   },
   "keywords": [],
   "author": "Phil Nash <philnash@twilio.com> (https://philna.sh)",
   "license": "MIT",
   "devDependencies": {
+    "netlify-cli": "^3.4.6",
     "parcel-bundler": "^1.12.4",
-    "parcel-plugin-svelte": "^4.0.8"
+    "parcel-plugin-svelte": "^4.0.8",
+    "svelte": "^3.32.1"
   },
   "dependencies": {
-    "svelte": "^3.32.1"
+    "disconnect": "^1.2.1"
   },
   "browserslist": [
     "since 2017-06"
