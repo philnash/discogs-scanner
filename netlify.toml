@@ -6,18 +6,6 @@
 [build]
   functions = "functions"
 [[redirects]]
-  from = "/discogs/callback"
-  to = "/.netlify/functions/callback"
-  status = 200
-[[redirects]]
-  from = "/discogs/auth"
-  to = "/.netlify/functions/auth"
-  status = 200
-[[redirects]]
-  from = "/discogs/user"
-  to = "/.netlify/functions/user"
-  status = 200
-[[redirects]]
-  from = "/discogs/search"
-  to = "/.netlify/functions/search"
+  from = "/discogs/*"
+  to = "/.netlify/functions/:splat"
   status = 200

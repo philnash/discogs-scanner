@@ -15,9 +15,8 @@ exports.handler = function (event, _context, callback) {
   oAuth.getAccessToken(
     event.queryStringParameters.oauth_verifier, // Verification code sent back by Discogs
     function (err, accessData) {
-      // Persist "accessData" here for following OAuth calls
       if (err) {
-        console.log("ERROR: ", err);
+        console.error("ERROR: ", err);
         return callback(err);
       }
       callback(null, {

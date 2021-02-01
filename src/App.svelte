@@ -4,13 +4,22 @@
   import Header from "./components/Header.svelte";
   import Footer from "./components/Footer.svelte";
   import { token, secret } from "./stores/tokens";
-  import { user } from "./stores/user";
+  import { user, collections } from "./stores/user";
 
   $: if ($token && $secret) {
     fetch(`/discogs/user?token=${$token}&secret=${$secret}`)
       .then(res => res.json())
       .then(userData => {
         user.set(userData);
+        fetch(
+          `/discogs/collections?token=${$token}&secret=${$secret}&username=${userData.username}`
+        )
+          .then(res => res.json())
+          .then(collectionData => {
+            collections.set(
+              collectionData.folders.filter(folder => folder.id !== 0)
+            );
+          });
       });
   }
 </script>

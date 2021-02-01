@@ -8,6 +8,7 @@
 
   const scan = async () => {
     scanning = true;
+    barcode = null;
     try {
       stream = await navigator.mediaDevices.getUserMedia({
         audio: false,
@@ -35,7 +36,6 @@
       if (event.data) {
         cancelScanning();
         barcode = event.data;
-        console.log(barcode);
       } else {
         draw();
       }
@@ -70,16 +70,17 @@
   };
 </script>
 
-{#if !scanning}
-  <button on:click={scan}>Scan barcode</button>
+{#if barcode}
+  <Search {barcode} />
+  {#if !scanning}
+    <button on:click={scan}>Scan again</button>
+  {/if}
 {:else}
-  {#if stream}
+  {#if !scanning}
+    <button on:click={scan}>Scan barcode</button>
+  {:else if stream}
     <!-- svelte-ignore a11y-media-has-caption -->
     <video use:srcObject={stream} autoplay playsinline />
     <button on:click={cancelScanning}>Stop</button>
   {/if}
-{/if}
-
-{#if barcode}
-  <Search {barcode} />
 {/if}

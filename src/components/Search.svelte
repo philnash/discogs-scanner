@@ -1,6 +1,7 @@
 <script>
   export let barcode;
 
+  import SearchResult from "./SearchResult.svelte";
   import { onMount } from "svelte";
   import { token, secret } from "../stores/tokens.js";
 
@@ -21,12 +22,7 @@
 <p>{barcode}</p>
 
 <ul>
-  {#each releases as { title, thumb }}
-    <li>
-      {#if thumb}
-        <img src={thumb} alt={title} />
-      {/if}
-      {title}
-    </li>
+  {#each releases as release}
+    <SearchResult {release} />
   {/each}
 </ul>

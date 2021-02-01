@@ -1,11 +1,4 @@
 const Discogs = require("disconnect").Client;
-
-function getRandomInt(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min) + min);
-}
-
 exports.handler = function (event, _context, callback) {
   const discogs = new Discogs({
     method: "oauth",
@@ -15,21 +8,17 @@ exports.handler = function (event, _context, callback) {
     token: event.queryStringParameters.token,
     tokenSecret: event.queryStringParameters.secret,
   });
-  const discogsDb = discogs.database();
-  discogsDb.search(
-    {
-      barcode: event.queryStringParameters.barcode,
-      type: "release",
-      per_page: getRandomInt(90, 101), // busts cache on user_data
-    },
-    (err, searchResults) => {
+  const discogCollection = discogs.user().collection();
+  discogCollection.getFolders(
+    event.queryStringParameters.username,
+    (err, userData) => {
       if (err) {
         console.error(err);
         callback(err);
       }
       callback(null, {
         statusCode: 200,
-        body: JSON.stringify(searchResults),
+        body: JSON.stringify(userData),
         headers: {
           "Content-Type": "application/json",
         },
