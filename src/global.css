@@ -57,25 +57,25 @@ input:disabled {
 }
 
 button {
-  color: #333;
-  background-color: #f4f4f4;
-  outline: none;
+  background: #111;
+  border: 1px solid #b33939;
+  color: #f7f1e3;
+  margin-bottom: 0;
+  border-radius: 4px;
+}
+button:hover,
+button:active,
+button:focus {
+  background: #b33939;
 }
 
 button:disabled {
-  color: #999;
-}
-
-button:not(:disabled):active {
-  background-color: #ddd;
-}
-
-button:focus {
-  border-color: #666;
+  opacity: 0.7;
 }
 
 .container {
   max-width: 1260px;
   margin-left: auto;
   margin-right: auto;
+  padding: 8px;
 }

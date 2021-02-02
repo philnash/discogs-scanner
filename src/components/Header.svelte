@@ -13,7 +13,6 @@
   header {
     background: #111;
     border-bottom: 2px solid #ff5252;
-    padding: 8px;
   }
 
   header h1 {
@@ -39,15 +38,8 @@
     margin: 0;
     margin-right: 1em;
   }
-  header .user button {
+  header button {
     background: #333;
-    border: 1px solid #b33939;
-    color: #f7f1e3;
-    margin-bottom: 0;
-  }
-  header .user button:hover,
-  header .user button:active {
-    background: #b33939;
   }
 
   @media (max-width: 400px) {

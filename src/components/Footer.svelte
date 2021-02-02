@@ -2,7 +2,6 @@
   footer {
     background: #111;
     border-top: 2px solid #ff5252;
-    padding: 8px;
   }
   p {
     text-align: center;

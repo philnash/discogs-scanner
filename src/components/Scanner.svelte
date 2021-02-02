@@ -1,5 +1,6 @@
 <script>
   import Search from "./Search.svelte";
+  import Info from "./Info.svelte";
   let scanning = false;
   let stream;
   let barcode;
@@ -70,6 +71,47 @@
   };
 </script>
 
+<style>
+  button {
+    text-align: center;
+    margin: 1em auto;
+    display: block;
+    padding: 1em;
+    font-size: 1.4em;
+  }
+
+  .btn-container {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+  }
+  .video-container button {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    right: 8px;
+    margin: 0;
+  }
+  .video-container video {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    height: 100%;
+  }
+</style>
+
 {#if barcode}
   <Search {barcode} />
   {#if !scanning}
@@ -77,10 +119,15 @@
   {/if}
 {:else}
   {#if !scanning}
-    <button on:click={scan}>Scan barcode</button>
+    <div class="btn-container container">
+      <Info />
+      <button on:click={scan}>Scan barcode</button>
+    </div>
   {:else if stream}
-    <!-- svelte-ignore a11y-media-has-caption -->
-    <video use:srcObject={stream} autoplay playsinline />
-    <button on:click={cancelScanning}>Stop</button>
+    <div class="video-container">
+      <!-- svelte-ignore a11y-media-has-caption -->
+      <video use:srcObject={stream} autoplay playsinline />
+      <button on:click={cancelScanning}>Stop</button>
+    </div>
   {/if}
 {/if}
