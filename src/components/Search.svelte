@@ -19,10 +19,10 @@
   });
 </script>
 
-<p>{barcode}</p>
-
-<ul>
-  {#each releases as release}
-    <SearchResult {release} />
-  {/each}
-</ul>
+<div class="container">
+  <ul>
+    {#each releases as release}
+      <SearchResult {release} />
+    {/each}
+  </ul>
+</div>

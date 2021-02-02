@@ -74,8 +74,15 @@ button:disabled {
 }
 
 .container {
+  width: 100%;
   max-width: 1260px;
   margin-left: auto;
   margin-right: auto;
   padding: 8px;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
 }

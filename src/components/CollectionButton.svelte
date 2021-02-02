@@ -18,10 +18,15 @@
   };
 </script>
 
+<style>
+  span {
+    padding: 0.4em;
+    display: block;
+  }
+</style>
+
 {#if release.user_data.in_collection}
-  <p>In collection</p>
+  <span>In collection</span>
 {:else}
-  <p>
-    <button on:click={addReleaseToCollection}>Add to collection</button>
-  </p>
+  <button on:click={addReleaseToCollection}>Add to collection</button>
 {/if}
