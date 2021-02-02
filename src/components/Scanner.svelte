@@ -96,12 +96,13 @@
     right: 0;
     bottom: 0;
     overflow: hidden;
+    background: #111;
   }
   .video-container button {
     position: absolute;
     bottom: 8px;
-    left: 8px;
-    right: 8px;
+    left: 50%;
+    transform: translateX(-50%);
     margin: 0;
   }
   .video-container video {
