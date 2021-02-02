@@ -1,7 +1,7 @@
 <script>
   export let release;
   import { token, secret } from "../stores/tokens.js";
-  import { user, collections } from "../stores/user.js";
+  import { user } from "../stores/user.js";
 
   let loading = false;
   let folder;
@@ -18,22 +18,10 @@
   };
 </script>
 
-{#if !release.user_data.in_collection}
-  {#if $collections}
-    <p>
-      {#if $collections.length === 1}
-        Add release to collection
-      {:else}
-        Add release to
-        <select bind:value={folder}>
-          {#each $collections as collection}
-            <option value={collection.id}>{collection.name}</option>
-          {/each}
-        </select>
-      {/if}
-      <button on:click={addReleaseToCollection}>Submit</button>
-    </p>
-  {/if}
-{:else}
+{#if release.user_data.in_collection}
   <p>In collection</p>
+{:else}
+  <p>
+    <button on:click={addReleaseToCollection}>Add to collection</button>
+  </p>
 {/if}

@@ -3,7 +3,7 @@
   import WantlistButton from "./WantlistButton.svelte";
   import CollectionButton from "./CollectionButton.svelte";
   import { token, secret } from "../stores/tokens.js";
-  import { user, collections } from "../stores/user";
+  import { user } from "../stores/user";
 
   let folder;
 </script>
