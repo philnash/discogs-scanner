@@ -1,6 +1,7 @@
 <script>
   import Search from "./Search.svelte";
-  import Info from "./Info.svelte";
+  import InfoContainer from "./InfoContainer.svelte";
+  import LargeButton from "./LargeButton.svelte";
   let scanning = false;
   let stream;
   let barcode;
@@ -13,7 +14,7 @@
     try {
       stream = await navigator.mediaDevices.getUserMedia({
         audio: false,
-        video: { facingMode: "environment" }
+        video: { facingMode: "environment" },
       });
     } catch (error) {
       console.error(error);
@@ -23,7 +24,7 @@
 
   const cancelScanning = () => {
     scanning = false;
-    stream.getTracks().forEach(track => track.stop());
+    stream.getTracks().forEach((track) => track.stop());
     stream = null;
     context = null;
     canvas = null;
@@ -33,7 +34,7 @@
     node.srcObject = stream;
 
     const barcodeWorker = new Worker("../workers/zbar.worker.js");
-    barcodeWorker.addEventListener("message", event => {
+    barcodeWorker.addEventListener("message", (event) => {
       if (event.data) {
         cancelScanning();
         barcode = event.data;
@@ -66,29 +67,32 @@
         if (node.srcObject != newStream) {
           node.srcObject = newStream;
         }
-      }
+      },
     };
   };
 </script>
 
+{#if barcode}
+  <Search {barcode} />
+  {#if !scanning}
+    <button on:click={scan}>Scan again</button>
+  {/if}
+{:else}
+  {#if !scanning}
+    <InfoContainer>
+      <LargeButton onclick={scan}>Scan barcode</LargeButton>
+    </InfoContainer>
+  {:else if stream}
+    <div class="video-container">
+      <!-- svelte-ignore a11y-media-has-caption -->
+      <video use:srcObject={stream} autoplay playsinline />
+      <LargeButton onclick={cancelScanning} class="positioned">Stop</LargeButton
+      >
+    </div>
+  {/if}
+{/if}
+
 <style>
-  button {
-    text-align: center;
-    margin: 1em auto;
-    display: block;
-    padding: 1em;
-    font-size: 1.4em;
-  }
-
-  .btn-container {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-  }
-
   .video-container {
     position: absolute;
     top: 0;
@@ -98,7 +102,7 @@
     overflow: hidden;
     background: #111;
   }
-  .video-container button {
+  .video-container :global(.positioned) {
     position: absolute;
     bottom: 8px;
     left: 50%;
@@ -112,23 +116,3 @@
     height: 100%;
   }
 </style>
-
-{#if barcode}
-  <Search {barcode} />
-  {#if !scanning}
-    <button on:click={scan}>Scan again</button>
-  {/if}
-{:else}
-  {#if !scanning}
-    <div class="btn-container container">
-      <Info />
-      <button on:click={scan}>Scan barcode</button>
-    </div>
-  {:else if stream}
-    <div class="video-container">
-      <!-- svelte-ignore a11y-media-has-caption -->
-      <video use:srcObject={stream} autoplay playsinline />
-      <button on:click={cancelScanning}>Stop</button>
-    </div>
-  {/if}
-{/if}

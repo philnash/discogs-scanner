@@ -21,17 +21,17 @@ body {
 }
 
 a {
-  color: #227093;
+  color: #b33939;
   text-decoration: none;
 }
 
 a:hover {
   text-decoration: underline;
-  color: #34ace0;
+  color: #ff5252;
 }
 
 a:visited {
-  color: #34ace0;
+  color: #ff5252;
 }
 
 label {
