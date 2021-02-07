@@ -9,6 +9,20 @@
   };
 </script>
 
+<header>
+  <div class="container">
+    <h1>Discogs Scanner</h1>
+
+    {#if $user}
+      <div class="user">
+        <img src={$user.avatar_url} alt={$user.username} />
+        <p>{$user.username}</p>
+        <button on:click={logout}>Log out</button>
+      </div>
+    {/if}
+  </div>
+</header>
+
 <style>
   header {
     background: #111;
@@ -42,7 +56,7 @@
     background: #333;
   }
 
-  @media (max-width: 400px) {
+  @media screen and (max-width: 400px) {
     header h1 {
       font-size: 24px;
     }
@@ -58,17 +72,3 @@
     }
   }
 </style>
-
-<header>
-  <div class="container">
-    <h1>Discogs Scanner</h1>
-
-    {#if $user}
-      <div class="user">
-        <img src={$user.avatar_url} alt={$user.username} />
-        <p>{$user.username}</p>
-        <button on:click={logout}>Log out</button>
-      </div>
-    {/if}
-  </div>
-</header>

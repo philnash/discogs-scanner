@@ -4,7 +4,7 @@
   import LargeButton from "./LargeButton.svelte";
   let scanning = false;
   let stream;
-  let barcode;
+  let barcode = "0825646266500"; // = "0602508639890";
   let canvas;
   let context;
 
@@ -36,8 +36,8 @@
     const barcodeWorker = new Worker("../workers/zbar.worker.js");
     barcodeWorker.addEventListener("message", (event) => {
       if (event.data) {
-        cancelScanning();
         barcode = event.data;
+        cancelScanning();
       } else {
         draw();
       }
@@ -75,7 +75,7 @@
 {#if barcode}
   <Search {barcode} />
   {#if !scanning}
-    <button on:click={scan}>Scan again</button>
+    <LargeButton onclick={scan}>Scan again</LargeButton>
   {/if}
 {:else}
   {#if !scanning}
