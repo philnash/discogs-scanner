@@ -15,7 +15,6 @@
     )
       .then((res) => res.json())
       .then((searchResults) => {
-        console.log(searchResults);
         searching = false;
         releases = searchResults.results;
       });
