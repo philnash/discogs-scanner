@@ -4,7 +4,7 @@
   import LargeButton from "./LargeButton.svelte";
   let scanning = false;
   let stream;
-  let barcode = "0825646266500"; // = "0602508639890";
+  let barcode;
   let canvas;
   let context;
 
