@@ -1,5 +1,5 @@
 {
-  "name": "discogs-scanner-parcel",
+  "name": "discogs-scanner",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -10,7 +10,7 @@
     "netlify": "netlify dev"
   },
   "keywords": [],
-  "author": "Phil Nash <philnash@twilio.com> (https://philna.sh)",
+  "author": "Phil Nash <philnash@gmail.com> (https://philna.sh)",
   "license": "MIT",
   "devDependencies": {
     "netlify-cli": "^3.4.6",
